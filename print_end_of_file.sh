@@ -31,4 +31,5 @@ do
    [ -e $new_file] && rm $new_file 
    tail -2 $output_file > $new_file 
  done
+ cd ../
 done
