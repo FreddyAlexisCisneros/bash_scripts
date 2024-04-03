@@ -4,6 +4,7 @@
 # to initialize the particle distribution for a new simulations. The reason for this is that there were simulations
 # running in France that stopped midway due to someone turning off the computer that the simulation was running on.
 
+:<<'end_comment'
 *******************
 * Useful Commands * 
 *******************
