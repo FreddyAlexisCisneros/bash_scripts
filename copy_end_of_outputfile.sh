@@ -16,21 +16,19 @@ end_comment
 # The following block of code goes through a list of 10 directories, where "dirm" is the name of the mth directory.
 # within this directory there will be outputfiles, where "outputn.txt" is the name of the output file for simulations with n particles.
 
-
 directories=$(seq 1 1 10)                    
 list_of_particle_numbers=$(seq 100 100 1000)
-#root_to_directory="/home/freddy/dir"
 
 for dir in ${directories[@]}
 do 
-  path="/home/freddy/dir${dir}/"
-  cd $path
-  for n in ${list_of_particle_numbers[@]}
-  do
-   output_file="output${n}.txt"
-   new_file="temp_${output_file}"
-   [ -e $new_file] && rm $new_file 
-   tail -2 $output_file > $new_file 
+ path="/home/freddy/dir${dir}/"
+ cd $path
+ for n in ${list_of_particle_numbers[@]}
+ do
+  output_file="output${n}.txt"
+  new_file="temp_${output_file}"
+  [ -e $new_file] && rm $new_file 
+  tail -2 $output_file > $new_file 
  done
  cd ../
 done
