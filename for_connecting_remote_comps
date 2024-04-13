@@ -1,3 +1,7 @@
+#*****************************
+#             Notes 
+#*****************************
+
 This is not a script rather notes for creating a simple connection between your computer and a remote computer.
 
 After successfully creating a public key using "ssh-keygen -t rsa" copy the contents of your public key to the the authorized_keys file within the ".ssh" directory of the remote computer.
