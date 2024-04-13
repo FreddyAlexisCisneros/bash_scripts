@@ -1,14 +1,14 @@
-#*****************************
-#             Notes 
-#*****************************
+#********************************************************************************************
+#   Notes for establishing a simple connection between your computer and a remote computer. *
+#********************************************************************************************
 
-This is not a script rather notes for creating a simple connection between your computer and a remote computer.
+After successfully creating a "public key" using "ssh-keygen -t rsa", copy the contents of your public key file to the the authorized_keys
+file of the remote computer. This file should be within the ".ssh" directory of the remote computer. Doing this will allow you to ssh onto 
+the remote computer without a password as well as allow you scp between your computer and the remote compter wihtout the use of a password.
 
-After successfully creating a public key using "ssh-keygen -t rsa" copy the contents of your public key to the the authorized_keys file within the ".ssh" directory of the remote computer.
-
-This will allow you to ssh into the remote computer as well as scp between your computer and this remote compter.
-Now, to avoid having to type username@ip_address everytime you can in essence create a new identifier that lets your computer know where you are trying to ssh into. To do this go to
-or create a "config" file on the ".ssh" directory of your computer. Then type the following
+Now, to avoid having to type username@ip_address everytime you want to ssh ont othe remote computer you can in essence create a new shorter
+nickname for the remote computer. To do this go to the "config" file on the ".ssh" directory of your computer. If this file does not exist
+then create it and type the following
 
 Host nickname
         HostName ipaddress
@@ -16,7 +16,6 @@ Host nickname
         Port 22
 
 After doing so you will now be able to ssh onto the remote computer by typing "ssh nickname" on the terminal.
-
 #**********************************************************************************************************************
 Should you forget any of this, visit:
 https://alvinalexander.com/linux-unix/how-use-scp-without-password-backups-copy/
