@@ -3,6 +3,7 @@
 # This bash script prints the 2nd to last line of an output file, to a new file that will be imported by the code.
 # to initialize the particle distribution for a new simulations. The reason for this is that there were simulations
 # running in France that stopped midway due to someone turning off the computer that the simulation was running on.
+# add additional scripts.
 
 : <<'end_comment'
 *******************
