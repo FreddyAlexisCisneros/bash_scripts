@@ -11,6 +11,8 @@
 *******************
 * Useful Commands * 
 *******************
+pgrep python3 | wc -l                              This command counts the number of jobs running with python3
+pgrep -lf python3                                  This command lists the jobs running with python3  
 tail -2 $output_file > $new_file                   This command prints the second to last line in "output_file" to "new_file".
 var=$(grep -o "[[:digit:]]\+" $new_file | wc -l)   This command assigns the number of values in "new_file" to var, should be equal to L.  
 Seq=$(seq start step end) a                        Assigns the sequence of integers starting from start and ending in end in increments of step.
