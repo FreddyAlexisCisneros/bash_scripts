@@ -32,14 +32,11 @@ while [ $current_index -le $Num_jobs ]
  if [ $running_jobs -lt $current_index ]
   then
    # Submit the job if there are fewer jobs running
-	 sbatch --job-name=$(pwd) ./myjob.sh $Param_1 $Param_2 $Param_3 $Param_4
-   echo "Job $current_index submitted."
+   sbatch --job-name=$(pwd) ./myjob.sh $Param_1 $Param_2 $Param_3 $Param_4
    # Increment the index for the next job submission
    current_index=$((current_index + 1))
   else
    # Wait for some time before checking again
-   echo "Waiting for available resources... ($running_jobs jobs running)"
    sleep 10  # Sleep for 10 seconds before checking again
  fi
 done
-echo "All $Num_jobs jobs have been submitted."
