@@ -1,0 +1,45 @@
+#!/bin/bash 
+
+#**********************************************************************
+# Since jobs continue be sent off to computer in the network          *
+# that are currently turned off are listed as available to run        *
+# I came up with this quick and temporary solution that used the      *
+# the current working directory as the jobname, and passes an index   *
+# to a nested bashscript. If the number of jobs currently running or  * 
+# pending is not equal to the current loops index then it attempts to *
+# submits the job again until the number of jobs currently running    *
+# is equal to the loops index.                                        *
+#**********************************************************************
+
+gcc c_script.c -o c_script -lm -O3
+
+Param_1=1
+Param_2=2
+Param_3=3
+Param_4=4
+
+Num_jobs=10
+
+# The current index of the job submission
+current_index=1
+
+# Loop until all Num_jobs jobs are submitted
+while [ $current_index -le $Num_jobs ]
+ do
+ # Get the number of currently running jobs with the same job name as the current working directory
+ running_jobs=$(squeue --noheader --name="$(pwd)" | wc -l)
+ # Check if the number of running jobs is less than the current index "fnum"
+ if [ $running_jobs -lt $current_index ]
+  then
+   # Submit the job if there are fewer jobs running
+	 sbatch --job-name=$(pwd) ./myjob.sh $Param_1 $Param_2 $Param_3 $Param_4
+   echo "Job $current_index submitted."
+   # Increment the index for the next job submission
+   current_index=$((current_index + 1))
+  else
+   # Wait for some time before checking again
+   echo "Waiting for available resources... ($running_jobs jobs running)"
+   sleep 10  # Sleep for 10 seconds before checking again
+ fi
+done
+echo "All $Num_jobs jobs have been submitted."
