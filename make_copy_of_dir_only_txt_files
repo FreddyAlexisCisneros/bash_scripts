@@ -1,0 +1,14 @@
+#!/bin/bash
+
+Pwd=$(pwd)
+
+working_dir_name=$(basename "$Pwd")
+destination_of_copied_dir="../txt_files_for_${working_dir_name}"
+
+rsync -a --include '*/' --exclude '*' "$Pwd/" "$destination_of_copied_dir/"
+
+find "$Pwd" -type f -name '*.txt' | while read -r file; do
+    new_dir="$destination_of_copied_dir$(dirname "${file#$Pwd}")"
+    mkdir -p "$new_dir"
+    cp "$file" "$new_dir/"
+done
