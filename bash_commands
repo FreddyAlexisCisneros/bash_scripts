@@ -1,0 +1,2 @@
+# to delete all documents within nested subdirectories that do not end with ".txt" use the following.
+find . -type f ! -name "*.txt" -delete
