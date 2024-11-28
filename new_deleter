@@ -1,0 +1,18 @@
+#!/bin/bash
+
+prefixes=$(ls N*_*_*.txt 2>/dev/null | sed -r 's/_[0-9]+\.txt$//' | sort -u)
+
+for prefix in $prefixes; do
+  combined_file="${prefix}.txt"
+  > "$combined_file"  # Create or clear the output file 
+
+  for file in ${prefix}_*.txt; do  # Loop through matching files
+    if [[ -f "$file" ]]; then
+      # Use tr to remove null bytes and grep to extract valid floats
+      tr -d '\000' < "$file" | grep -E '^-?[0-9]+(\.[0-9]+)?$' >> "$combined_file"
+    fi
+  done
+
+  # Move the combined file to the parent directory
+  mv "$combined_file" ../
+done
